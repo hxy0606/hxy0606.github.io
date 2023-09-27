@@ -3338,16 +3338,6 @@ h1.page-title + .tag-cloud-list {
 }
 #page-header #site-title,
 #page-header #site-subtitle,
-#page-header color: val(--white) {
-  font-size: 1.05em;
-}
-@media screen and (min-width: 768px) {
-  #page-header #site-title,
-  #page-header #site-subtitle,
-  #page-header color: val(--white) {
-    font-size: 1.4em;
-  }
-}
 #page-header #scroll-down .scroll-down-effects {
   text-align: center;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.15);
@@ -3364,12 +3354,12 @@ h1.page-title + .tag-cloud-list {
   }
 }
 #page-header #site-subtitle {
-  color: var(--light-grey);
-  font-size: 1.15em;
+  color: var(--white);
+  font-size: 1.05em;
 }
 @media screen and (min-width: 768px) {
   #page-header #site-subtitle {
-    font-size: 1.72em;
+    font-size: 1.4em;
   }
 }
 #page-header #site_social_icons {
