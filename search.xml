@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>GCC</title>
+      <link href="/2023/09/27/GCC/"/>
+      <url>/2023/09/27/GCC/</url>
+      
+        <content type="html"><![CDATA[<h2 id="GCC简介"><a href="#GCC简介" class="headerlink" title="GCC简介"></a>GCC简介</h2><p>​GCC是GNU Compiler Collection的缩写，是一个由GNU开发的开源编译器套件。它是一个功能强大且广泛使用的编译器，支持多种编程语言，包括C、C++、Objective-C、Fortran、Ada和Go等。</p><p>​GCC由一系列的编译器组成，每个编译器都用于处理特定的编程语言。其中最常用的是GCC的C编译器（gcc）和C++编译器（g++）。这两个编译器可以将C和C++源代码编译成可执行文件或库文件。它不仅包含编译器，还包含其他的工具集，例如ar、nm等。</p><p>​GCC提供了丰富的编译选项和优化功能，可以根据需要进行配置和调整。它支持多种目标平台和操作系统，包括Linux、Windows、macOS等。GCC还支持多种架构和处理器，如x86、ARM、MIPS等。</p><h2 id="gcc工作流程"><a href="#gcc工作流程" class="headerlink" title="gcc工作流程"></a>gcc工作流程</h2><p>​对于C语言程序，我们需要将它编译链接为可执行的二进制文件，然后由系统加载执行。在Linux系统中，GCC编译程序会读取源代码文件，并且将其翻译成一个可执行文件，整个过程共四个阶段，由编译工具链完成。下面将详细介绍这四个过程。</p><ol><li><p>预处理（cpp）</p><p>在命令行下输入<code>gcc -E test.c -o test.i</code>，预处理器会对以#开头的预处理命令进行处理，如读取头文件、宏替换等。在这之后会得到一个新的C程序，我们一般将其命名为.i文件。</p></li><li><p>编译（cc）</p><p>在命令行下输入<code>gcc -S test.i -o test.s</code>，当然也可以是<code>gcc -S test.c -o test.s</code>，只是这种方式是由预处理器和编译器一起完成的，编译器将test.i翻译成了test.s汇编文件，汇编程序是一条条通用的机器语言指令。</p></li><li><p>汇编（as）</p></li><li><p>链接（ld）</p></li></ol>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> GCC </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>策略模式</title>
       <link href="/2023/09/27/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/"/>
       <url>/2023/09/27/%E7%AD%96%E7%95%A5%E6%A8%A1%E5%BC%8F/</url>
