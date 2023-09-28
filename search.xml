@@ -4,11 +4,61 @@
   
     
     <entry>
+      <title>make</title>
+      <link href="/2023/09/28/make/"/>
+      <url>/2023/09/28/make/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 分类 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 标签 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Linux基本命令</title>
+      <link href="/2023/09/28/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/"/>
+      <url>/2023/09/28/Linux%E5%9F%BA%E6%9C%AC%E5%91%BD%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><p>下面是 Linux 常用命令的简单介绍。但实际上，Linux 命令的种类和功能还有很多，每个命令都有许多参数和选项，在这就不一一介绍，需要的朋友可以自行网上查找相关资料。</p><p><strong>文件和目录操作命令</strong></p><ul><li>ls：列出当前目录中的文件和子目录。</li><li>cd：切换当前工作目录。</li><li>mkdir：创建一个新的目录。</li><li>rmdir：删除一个空目录。</li><li>touch：创建一个新文件，或者更新已有文件的时间戳。</li><li>cp：复制文件或目录。</li><li>mv：移动或重命名文件或目录。</li><li>rm：删除文件或目录。</li><li>chmod：修改文件或目录的访问权限。</li><li>chown：修改文件或目录的所有者。</li><li>chgrp：修改文件或目录的所属群组。</li></ul><p><strong>文件查看和编辑命令</strong></p><ul><li><p>cat：从头开始显示文件内容。</p></li><li><p>more：逐屏显示文件内容，用空格键翻页，按 Q 键退出。</p></li><li><p>less：类似于 more 命令，但比 more 更强大，提供了快速搜索和定位等功能。</p></li><li><p>tail：显示文件的最后几行。</p></li><li><p>head：显示文件的头几行。</p></li><li><p>vim：一个常用的文本编辑器，支持命令模式、插入模式和可视模式等多种编辑方式。</p></li></ul><p><strong>系统管理命令</strong></p><ul><li>ps：查看当前运行进程的情况。</li><li>top：展示系统当前运行的进程、资源占用情况等信息。</li><li>kill：向指定进程发送信号，以停止、暂停或重新启动该进程。</li><li>df：查看磁盘空间使用情况。</li><li>du：查看目录中文件大小的统计信息。</li><li>ping：检测网络连接是否正常，测试主机与目的计算机之间的响应时间。</li><li>ifconfig：配置网络接口的 IP 地址、掩码等参数。</li><li>netstat：展示网络连接、路由表、网络接口等信息。</li><li>ssh：安全地登录远程主机并执行命令。</li><li>sudo：以超级用户身份执行命令。</li><li>tar：对文件和目录进行压缩和解压缩操作。</li><li>scp：使用 SSH 协议，将文件从本地复制到远程主机或将远程主机上的文件复制到本地。</li></ul><p><strong>curl 命令</strong></p><p>用于使用 URL 获得文件并将其输出到标准输出。常用参数如下：</p><ul><li>curl -O <a href="https://example.com/file.txt%EF%BC%9A%E5%B0%86%E6%96%87%E4%BB%B6">https://example.com/file.txt：将文件</a> <a href="https://example.com/file.txt">https://example.com/file.txt</a> 下载到当前目录。</li></ul><p><strong>wget 命令</strong></p><p>也用于下载文件。常用参数如下：</p><ul><li>wget <a href="https://example.com/file.txt%EF%BC%9A%E5%B0%86%E6%96%87%E4%BB%B6">https://example.com/file.txt：将文件</a> <a href="https://example.com/file.txt">https://example.com/file.txt</a> 下载到当前目录。</li></ul><h2 id="软件包管理"><a href="#软件包管理" class="headerlink" title="软件包管理"></a>软件包管理</h2><h2 id="特殊字符"><a href="#特殊字符" class="headerlink" title="特殊字符"></a>特殊字符</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Linux </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>GCC</title>
       <link href="/2023/09/27/GCC/"/>
       <url>/2023/09/27/GCC/</url>
       
-        <content type="html"><![CDATA[<h2 id="GCC简介"><a href="#GCC简介" class="headerlink" title="GCC简介"></a>GCC简介</h2><p>​GCC是GNU Compiler Collection的缩写，是一个由GNU开发的开源编译器套件。它是一个功能强大且广泛使用的编译器，支持多种编程语言，包括C、C++、Objective-C、Fortran、Ada和Go等。</p><p>​GCC由一系列的编译器组成，每个编译器都用于处理特定的编程语言。其中最常用的是GCC的C编译器（gcc）和C++编译器（g++）。这两个编译器可以将C和C++源代码编译成可执行文件或库文件。它不仅包含编译器，还包含其他的工具集，例如ar、nm等。</p><p>​GCC提供了丰富的编译选项和优化功能，可以根据需要进行配置和调整。它支持多种目标平台和操作系统，包括Linux、Windows、macOS等。GCC还支持多种架构和处理器，如x86、ARM、MIPS等。</p><h2 id="gcc工作流程"><a href="#gcc工作流程" class="headerlink" title="gcc工作流程"></a>gcc工作流程</h2><p>​对于C语言程序，我们需要将它编译链接为可执行的二进制文件，然后由系统加载执行。在Linux系统中，GCC编译程序会读取源代码文件，并且将其翻译成一个可执行文件，整个过程共四个阶段，由编译工具链完成。下面将详细介绍这四个过程。</p><ol><li><p>预处理（cpp）</p><p>在命令行下输入<code>gcc -E test.c -o test.i</code>，预处理器会对以#开头的预处理命令进行处理，如读取头文件、宏替换等。在这之后会得到一个新的C程序，我们一般将其命名为.i文件。</p></li><li><p>编译（cc）</p><p>在命令行下输入<code>gcc -S test.i -o test.s</code>，当然也可以是<code>gcc -S test.c -o test.s</code>，只是这种方式是由预处理器和编译器一起完成的，编译器将test.i翻译成了test.s汇编文件，汇编程序是一条条通用的机器语言指令。</p></li><li><p>汇编（as）</p></li><li><p>链接（ld）</p></li></ol>]]></content>
+        <content type="html"><![CDATA[<h2 id="GCC简介"><a href="#GCC简介" class="headerlink" title="GCC简介"></a>GCC简介</h2><p>​GCC（GNU Compiler Collection）是由 GNU 开发的编程语言编译器。 GCC最初代表“GNU C Compiler”，当时只支持C语言。 后来又扩展能够支持更多编程语言，包括 C++、Objective-C、Fortran、Ada、GoFortran 和 Java 以及各类处理器架构上的汇编语言，GCC还包括了这些语言的库（如libstdc++，libgcj等。）。 因此，GCC也被重新定义为“GNU Compiler Collection”，成为历史上最优秀的编译器套件， 其执行效率与一般的编译器相比平均效率要高 20%~30%。</p><p>​GCC由一系列的编译器和工具集（例如ar、nm等）组成，每个编译器都用于处理特定的编程语言。其中最常用的是GCC的C编译器（gcc）和C++编译器（g++）。这两个编译器可以将C和C++源代码编译成可执行文件或库文件。</p><p>​GCC提供了丰富的编译选项和优化功能，可以根据需要进行配置和调整。它支持多种目标平台和操作系统，包括Linux、Windows、macOS等。GCC还支持多种架构和处理器，如x86、ARM、MIPS等。</p><h2 id="GCC编译工具链"><a href="#GCC编译工具链" class="headerlink" title="GCC编译工具链"></a>GCC编译工具链</h2><p>GCC编译工具链（toolchain），是指以GCC编译器为核心的一整套工具。它主要包含以下三部分内容：</p><ul><li>gcc-core：即GCC编译器，用于完成预处理和编译过程，把C代码转换成汇编代码。</li><li>Binutils ：除GCC编译器外的一系列小工具包括了链接器ld，汇编器as、目标文件格式查看器readelf等。</li><li>glibc：包含了主要的 C语言标准函数库，C语言中常常使用的打印函数printf、malloc函数就在glibc 库中。</li></ul><p>在很多场合下会直接用GCC编译器来指代整套GCC编译工具链。</p><h2 id="gcc基本用法"><a href="#gcc基本用法" class="headerlink" title="gcc基本用法"></a>gcc基本用法</h2><p>GCC最基本的用法是∶gcc [options] [filenames]</p><p>其中options就是编译器所需要的参数，filenames给出相关的文件名称。下面是一些常用gcc参数：</p><ul><li>-c，只编译，不链接成为可执行文件，编译器只是由输入的.c等源代码文件生成.o为后缀的目标文件，通常用于编译不包含主程序的子程序文件。</li><li>-o output_filename，确定输出文件的名称为output_filename，同时这个名称不能和源文件同名。如果不给出这个选项，gcc就给出预设的可执行文件a.out。</li><li>-g，产生符号调试工具（GNU的gdb）所必要的符号资讯，要想对源代码进行调试，我们就必须加入这个选项。</li><li>-O，对程序进行优化编译、链接，采用这个选项，整个源代码会在编译、链接过程中进行优化处理，这样产生的可执行文件的执行效率可以提高，但是，编译、链接的速度就相应地要慢一些。</li><li>-O2，比-O更好的优化编译、链接，当然整个编译、链接过程会更慢。</li><li>-Idirname，将dirname所指出的目录加入到程序头文件目录列表中，是在预编译过程中使用的参数。C程序中的头文件包含两种情况∶<ul><li>#include &lt;&gt; ：专门用来包含系统提供的头文件（由操作系统自带的，不是程序员自己写的）。编译器只会到系统指定目录去寻找这个头文件，也可以用-I附加指定其他的包含路径。</li><li>#include “”  ：用来包含自己写的头文件，编译器默认先在当前目录下寻找相应的头文件，如果没找到再到系统指定的目录去寻找，也可以用-I附加指定其他的包含路径。</li></ul></li><li>-v gcc执行时执行的详细过程，gcc及其相关程序的版本号</li></ul><h2 id="gcc工作流程"><a href="#gcc工作流程" class="headerlink" title="gcc工作流程"></a>gcc工作流程</h2><p>​对于C语言程序，我们需要将它编译链接为可执行的二进制文件，然后由系统加载执行。在Linux系统中，GCC编译程序会读取源代码文件，并且将其翻译成一个可执行文件，整个过程共四个阶段，由编译工具链完成。下面将详细介绍这四个过程。</p><h3 id="预处理（cpp）"><a href="#预处理（cpp）" class="headerlink" title="预处理（cpp）"></a>预处理（cpp）</h3><p>在命令行下输入<code>gcc -E test.c -o test.i</code>，预处理器会对以#开头的预处理命令进行处理，如读取头文件、宏替换等。在这之后会得到一个新的C程序，我们一般将其命名为.i文件。</p><p>编译器本身的主要目的是编译源代码，将C语言的源代码转化成.s的汇编代码。编译器聚焦核心功能后，剥离出的一部分非核心功能由预处理器执行。预处理器对源代码进行一些预先处理，为后续编译打好基础后，再由编译器编译。</p><p>预处理器涉及的内容：</p><ul><li>文件包含</li><li>宏定义</li><li>条件编译</li><li>一些特殊的预处理关键字</li><li>去掉程序中的注释</li></ul><p><strong>test.i如下</strong></p><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">...</span><br><span class="line"><span class="keyword">extern</span> <span class="type">void</span> <span class="title function_">funlockfile</span> <span class="params">(FILE *__stream)</span> __<span class="title function_">attribute__</span> <span class="params">((__nothrow__ , __leaf__))</span>;</span><br><span class="line"># <span class="number">858</span> <span class="string">&quot;/usr/include/stdio.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> __uflow (FILE *);</span><br><span class="line"><span class="keyword">extern</span> <span class="type">int</span> __overflow (FILE *, <span class="type">int</span>);</span><br><span class="line"># <span class="number">873</span> <span class="string">&quot;/usr/include/stdio.h&quot;</span> <span class="number">3</span> <span class="number">4</span></span><br><span class="line"></span><br><span class="line"># <span class="number">2</span> <span class="string">&quot;test.c&quot;</span> <span class="number">2</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># <span class="number">3</span> <span class="string">&quot;test.c&quot;</span></span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">&quot;test\n&quot;</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="编译（cc）"><a href="#编译（cc）" class="headerlink" title="编译（cc）"></a>编译（cc）</h3><p>在命令行下输入<code>gcc -S test.i -o test.s</code>，当然也可以是<code>gcc -S test.c -o test.s</code>，只是这种方式是由预处理器和编译器一起完成的，编译器将test.i翻译成了test.s汇编文件，汇编程序是一条条通用的机器语言指令。</p><p><strong>test.s如下</strong></p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">.file&quot;test.c&quot;</span><br><span class="line">.text</span><br><span class="line">.section.rodata</span><br><span class="line">.LC0:</span><br><span class="line">.string&quot;test&quot;</span><br><span class="line">.text</span><br><span class="line">.globlmain</span><br><span class="line">.typemain, @function</span><br><span class="line">main:</span><br><span class="line">.LFB0:</span><br><span class="line">.cfi_startproc</span><br><span class="line">endbr64</span><br><span class="line">pushq%rbp</span><br><span class="line">.cfi_def_cfa_offset 16</span><br><span class="line">.cfi_offset 6, -16</span><br><span class="line">movq%rsp, %rbp</span><br><span class="line">.cfi_def_cfa_register 6</span><br><span class="line">leaq.LC0(%rip), %rdi</span><br><span class="line">callputs@PLT</span><br><span class="line">movl$0, %eax</span><br><span class="line">popq%rbp</span><br><span class="line">.cfi_def_cfa 7, 8</span><br><span class="line">ret</span><br><span class="line">.cfi_endproc</span><br><span class="line">.LFE0:</span><br><span class="line">.sizemain, .-main</span><br><span class="line">.ident&quot;GCC: (Ubuntu 9.4.0-1ubuntu1~20.04.2) 9.4.0&quot;</span><br><span class="line">.section.note.GNU-stack,&quot;&quot;,@progbits</span><br><span class="line">.section.note.gnu.property,&quot;a&quot;</span><br><span class="line">.align 8</span><br><span class="line">.long 1f - 0f</span><br><span class="line">.long 4f - 1f</span><br><span class="line">.long 5</span><br><span class="line">0:</span><br><span class="line">.string &quot;GNU&quot;</span><br><span class="line">1:</span><br><span class="line">.align 8</span><br><span class="line">.long 0xc0000002</span><br><span class="line">.long 3f - 2f</span><br><span class="line">2:</span><br><span class="line">.long 0x3</span><br><span class="line">3:</span><br><span class="line">.align 8</span><br><span class="line">4:</span><br></pre></td></tr></table></figure><h3 id="汇编（as）"><a href="#汇编（as）" class="headerlink" title="汇编（as）"></a>汇编（as）</h3><p>在命令行下输入<code>gcc -c test.s -o test.o</code>，汇编器会将test.s翻译成机器语言指令，将这些指令打包为***.o格式的可重定位文件，并将结果保存在目标文件test.o中。目标文件是由不同的段组成，通常一个目标至少有两个段：数据段和代码段。hello.o用文本文档打开后是无法看懂的，因为这是二进制文件。</p><h3 id="链接（ld）"><a href="#链接（ld）" class="headerlink" title="链接（ld）"></a>链接（ld）</h3><p>在命令行下输入<code>gcc test.o -o test</code>，链接器会将test.o和其他库文件、目标代码链接后形成可执行文件。</p>]]></content>
       
       
       <categories>
@@ -98,19 +148,6 @@
             <tag> 设计模式 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/2023/09/26/hello-world/"/>
-      <url>/2023/09/26/hello-world/</url>
-      
-        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
-      
-      
       
     </entry>
     
