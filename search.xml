@@ -4,6 +4,100 @@
   
     
     <entry>
+      <title>ARM汇编指令</title>
+      <link href="/2023/10/09/ARM/ARM%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/"/>
+      <url>/2023/10/09/ARM/ARM%E6%B1%87%E7%BC%96%E6%8C%87%E4%BB%A4/</url>
+      
+        <content type="html"><![CDATA[<p>&emsp;&emsp;我们在进行嵌入式 Linux 开发的时候是绝对要掌握基本的 ARM 汇编，因为 Cortex-A 芯片一上电 SP 指针还没初始化，C 环境还没准备好，所以肯定不能运行 C 代码，必须先用汇编语言设置好 C 环境，比如初始化 DDR、设置 SP指针等等，当汇编把 C 环境设置好了以后才可以运行 C 代码。所以 Cortex-A 一开始肯定是汇编代码，其实 STM32 也一样的，一开始也是汇编，以 STM32F103 为例，启动文件startup_stm32f10x_hd.s 就是汇编文件，只是这个文件 ST 已经写好了，我们根本不用去修改。</p><h2 id="GNU汇编语法"><a href="#GNU汇编语法" class="headerlink" title="GNU汇编语法"></a>GNU汇编语法</h2><p>&emsp;&emsp;ARM汇编语言的基本语法和指令集与其他汇编语言类似，但具体的指令和寄存器名称可能会有所不同，因为它们是针对ARM架构的特定指令集设计的。ARM汇编编译使用的 GCC 交叉编译器，所以我们的汇编代码要符合 GNU 语法。GNU 汇编语法适用于所有的架构，并不是 ARM 独享的，GNU 汇编由一系列的语句组成，每行一条语句，每条语句有三个可选部分，如下：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">label:instruction @ comment</span><br></pre></td></tr></table></figure><ul><li><p><code>label</code>：标号，表示地址位置，有些指令前面可能会有标号，这样就可以通过这个标号得到<br>指令的地址，标号也可以用来表示数据地址。注意 label 后面的“：”，任何以“：”结尾的标识<br>符都会被识别为一个标号。</p></li><li><p><code>instruction</code>：指令，也就是汇编指令或伪指令。</p></li><li><p><code>@</code>：表示后面的是注释，就跟 C 语言里面的 <code>/*</code> 和 <code>*/</code> 一样，其实在 GNU 汇编文件中我们也可以使用 <code>/*</code> 和 <code>*/</code> 来注释。</p></li><li><p><code>comment</code>：注释内容。</p></li></ul><p>示例：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">add:</span><br><span class="line">MOVS R0, #0X12         @设置 R0=0X12</span><br></pre></td></tr></table></figure><p>上面代码中 <code>add:</code> 就是标号， <code>MOVS R0,#0X12</code> 就是指令，最后的 <code>@设置 R0=0X12</code> 就是注释。</p><p>注意：ARM 中的指令、伪指令、伪操作、寄存器名等可以全部使用大写，也可以全部使用小写，但是不能大小写混用。</p><p>用户可以使用 <code>.section</code> 伪操作来定义一个段，每个段以段名开始，以下一段名或者文件结尾结束，比如：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.section .testsection @定义一个 testsetcion 段</span><br></pre></td></tr></table></figure><p>汇编系统预定义了一些段名：</p><table><thead><tr><th align="center">定义</th><th align="center">段名</th></tr></thead><tbody><tr><td align="center">.text</td><td align="center">表示代码段。</td></tr><tr><td align="center">.data</td><td align="center">初始化的数据段。</td></tr><tr><td align="center">.bss</td><td align="center">未初始化的数据段。</td></tr><tr><td align="center">.rodata</td><td align="center">只读数据段。</td></tr></tbody></table><p>汇编程序的默认入口标号是 <code>_start</code> ，不过我们也可以在链接脚本中使用 <code>ENTRY</code> 来指明其它的入口点，下面的代码就是使用 <code>_start</code> 作为入口标号：</p><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.global _start</span><br><span class="line"></span><br><span class="line">_start:</span><br><span class="line">ldr r0, =0x12 @r0=0x12</span><br></pre></td></tr></table></figure><p>上面代码中.global 是伪操作，表示_start 是一个全局标号，类似 C 语言里面的全局变量一样，常见的伪操作有：</p><table><thead><tr><th align="center">伪操作</th><th align="center">含义</th></tr></thead><tbody><tr><td align="center">.byte</td><td align="center">定义单字节数据，比如.byte 0x12</td></tr><tr><td align="center">.short</td><td align="center">定义双字节数据，比如.short 0x1234</td></tr><tr><td align="center">.long</td><td align="center">定义一个 4 字节数据，比如.long 0x12345678</td></tr><tr><td align="center">.equ</td><td align="center">赋值语句，格式为：.equ 变量名，表达式，比如.equ num, 0x12，表示 num&#x3D;0x12</td></tr><tr><td align="center">.align</td><td align="center">数据字节对齐，比如：.align 4 表示 4 字节对齐</td></tr><tr><td align="center">.end</td><td align="center">表示源文件结束</td></tr><tr><td align="center">.global</td><td align="center">定义一个全局符号，格式为：.global symbol，比如：.global _start</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> ARM </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 汇编 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>内存管理</title>
+      <link href="/2023/10/09/ARM/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+      <url>/2023/10/09/ARM/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+      
+      <categories>
+          
+          <category> 分类 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 标签 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>ARM体系结构</title>
+      <link href="/2023/10/08/ARM/ARM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/"/>
+      <url>/2023/10/08/ARM/ARM%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84/</url>
+      
+        <content type="html"><![CDATA[<p>&emsp;&emsp;ARM（Advanced RISC Machine）是一种基于精简指令集计算机（RISC）架构的处理器设计。ARM架构最初由英国公司ARM Holdings开发，现在已成为全球最流行的处理器架构之一。</p><p>ARM架构的主要特点包括：</p><ol><li><p>简化指令集：ARM架构采用了精简指令集，即每条指令的功能都比较简单和基础。这种设计使得指令的执行时间更短，从而提高了处理器的效率和性能。</p></li><li><p>低功耗：ARM架构的处理器设计注重功耗的优化。ARM处理器通常采用低电压和低功耗设计，使其在移动设备和嵌入式系统等电池供电的环境中具有较长的续航时间。</p></li><li><p>可扩展性：ARM架构具有很高的可扩展性，可以用于不同级别的处理器，从低功耗的微控制器到高性能的服务器处理器。这使得ARM架构适用于各种应用领域，包括移动设备、物联网、嵌入式系统、工业控制等。</p></li><li><p>兼容性：ARM架构的指令集在不同的处理器中具有一定的兼容性。这意味着使用ARM架构开发的软件可以在不同的ARM处理器上运行，而不需要进行重新编译或修改。</p></li><li><p>生态系统：ARM架构拥有庞大的生态系统，包括各种芯片制造商、设备制造商、软件开发商和工具提供商。这为开发者提供了广泛的支持和资源，使得开发基于ARM架构的应用更加便捷和高效。</p></li></ol><p>&emsp;&emsp;ARM架构的应用非常广泛，特别是在移动设备领域。目前，大多数智能手机和平板电脑都使用ARM架构的处理器。此外，ARM架构也在物联网、嵌入式系统、工业控制和服务器等领域得到广泛应用。</p><p><strong>ARM处理器最新发展</strong></p><p>cortex-A系列：面向尖端的虚拟内存的操作系统和用户应用。</p><p>cortex-R系列：实时性 通常是用在军工方面。</p><p>cortex-M系列：低功耗、低成本的微控制器方向。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> ARM </category>
+          
+      </categories>
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>内存</title>
+      <link href="/2023/10/05/ARM/%E5%86%85%E5%AD%98/"/>
+      <url>/2023/10/05/ARM/%E5%86%85%E5%AD%98/</url>
+      
+        <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>&emsp;&emsp;要想理解程序在计算机中是如何由代码变为运行中的进程的，那么内存一定是一个非常重要的概念。在介绍内存之前，我们先简单了解一下计算机的组成部分。</p><p>计算机主要是由硬件和软件两大部分组成：</p><ul><li><p>硬件</p><p>指计算机系统中由电子，机械和光电元件等组成的各种物理装置的总称。这些物理装置按系统结构的要求构成一个有机整体为计算机软件运行提供物质基础。</p><p>主要分为五个部分：控制器、运算器、存储器、输入设备、输出设备</p><p>cpu&#x3D;控制器+运算器</p><p>主板&#x3D;I&#x2F;O总线，输入输出系统</p><p>存储器&#x3D;内存+硬盘</p><p>I&#x2F;O设备：键盘，鼠标，扫描仪，显示器等等</p></li><li><p>软件</p><p>计算机软件(ComputerSoftware)是指计算机系统中的程序及其文档。程序是计算任务的处理对象和处理规则的描述；文档是为了便于了解程序所需的阐述性资料。计算机软件分为系统软件和应用软件，如果把计算机比喻为一个人的话，那么硬件就表示人的身躯。而软件则表示人的思想、灵魂。一台没有安装任何软件的计算机我们把它称之为“裸机”。</p></li></ul><img src="/2023/10/05/ARM/%E5%86%85%E5%AD%98/562c11dfa9ec8a1391e554c5f503918fa0ecc01c.webp" class><p>接下来我们将主要从程序的编写到执行逐步讲解。</p><h2 id="什么是程序"><a href="#什么是程序" class="headerlink" title="什么是程序"></a>什么是程序</h2><p>&emsp;&emsp;计算机中程序分为系统程序和应用程序，程序员们编写的一般是应用程序，而应用程序和系统程序有什么区别呢？我们都知道程序是程序员写来让计算机去执行的，而执行程序的一般就是计算机的硬件部分，比如从存储器存取数据，让运算器去运算数据。这就相当于是由程序员去操作计算机的硬件，而实际的开发中，我们程序员并不是直接能操作到硬件的，因为如果能任意操作硬件的话，很可能会带来无法挽回的错误。</p><p>让应用程序直接访问硬件可能会导致以下问题：</p><ol><li>安全性问题：如果应用程序可以直接访问硬件，那么恶意应用程序可能会滥用这种权限，对系统造成损害。例如，恶意应用程序可能会损坏硬件设备、窃取敏感信息或者干扰其他应用程序的正常运行。通过系统程序来管理和限制应用程序对硬件的访问，可以提高系统的安全性。</li><li>稳定性问题：硬件设备通常需要精确的控制和管理，以确保其正常运行。如果应用程序直接访问硬件，可能会导致不稳定性和冲突。例如，多个应用程序同时访问硬件设备可能会引发资源竞争和冲突，导致系统崩溃或者硬件设备无法正常工作。通过系统程序来协调和管理应用程序对硬件的访问，可以提高系统的稳定性。</li><li>抽象和易用性问题：系统程序提供了对硬件的抽象和封装，使得应用程序可以通过统一的接口和API来访问硬件，而不需要关注硬件的具体细节。这种抽象和封装提高了应用程序的易用性和可移植性。如果应用程序直接访问硬件，需要针对不同的硬件设备编写不同的代码，增加了开发和维护的复杂性。</li></ol><p>除了硬件访问的管理和限制，系统程序还负责程序的存储和加载。具体来说，系统程序可以提供以下功能：</p><ol><li>文件系统管理：系统程序负责管理计算机中的文件系统，包括文件的创建、删除、复制、移动等操作。它还负责文件的组织和存储，以便应用程序可以方便地访问和加载文件。</li><li>内存管理：系统程序负责管理计算机的内存资源，包括内存的分配、释放、调度等。当应用程序需要执行时，系统程序会将程序的代码和数据加载到内存中，并为其分配足够的内存空间。在程序执行过程中，系统程序还会监控内存的使用情况，以防止内存泄漏和溢出等问题。</li><li>加载和执行：系统程序负责将程序从存储介质（如硬盘）加载到内存中，并将程序的控制权交给CPU，以便程序可以开始执行。系统程序会解析程序的二进制代码，并将其转换为CPU可以理解的指令。它还负责程序的初始化和资源的分配，以确保程序能够正常运行。</li><li>错误处理：系统程序负责处理程序执行过程中的错误和异常。它会监控程序的运行状态，如运行时间、内存使用情况、IO操作等，并在出现错误或异常时采取相应的措施，如终止程序、回滚操作、发送错误报告等。</li></ol><p>&emsp;&emsp;用系统程序来管理和限制应用程序对硬件的访问，可以提高系统的安全性、稳定性和易用性。系统程序提供了对硬件的抽象和封装，使得应用程序可以通过统一的接口来访问硬件，而不需要直接与硬件交互。这种分层架构有助于保护系统和应用程序的正常运行。</p><p>另外：有些计算机是可以不需要系统程序的，在这种计算机上能直接操控硬件，也就是裸机开发。常见的就是MCU（Microcontroller Unit），也就是俗称的单片机。</p><blockquote><p>因此，嵌入式软件开发就分为了应用层开发和驱动开发。应用层开发只需要获取底层提供的接口，而不需要了解底层如何实现。驱动开发则是更关注于系统软件，为上层应用提供接口，以及操作硬件。</p></blockquote><h2 id="程序的存储"><a href="#程序的存储" class="headerlink" title="程序的存储"></a>程序的存储</h2><p>程序从编写到存储的过程可以简单概括为以下几个步骤：</p><ol><li><p>编写源代码：程序员使用编程语言编写程序的源代码。源代码是以可读的文本形式表示的程序代码，它包含了程序的逻辑、算法和功能实现。</p></li><li><p>编译或解释：源代码需要经过编译或解释过程，将其转换为计算机可以执行的形式。</p></li></ol><ul><li><p>编译：编译器将源代码作为输入，将其转换为机器语言或字节码等与特定硬件或操作系统相关的形式。编译过程将源代码转换为可执行文件，其中包含了程序的机器指令和数据。</p></li><li><p>解释：解释器逐行解释源代码，并在运行时执行相应的操作。解释过程不会生成可执行文件，而是直接在运行时执行源代码。</p></li></ul><ol start="3"><li>存储程序文件：生成的可执行文件或源代码文件需要存储在计算机的存储介质中，以便在需要时进行加载和执行。</li></ol><ul><li><p>可执行文件：编译后的程序通常会生成可执行文件，该文件包含了程序的机器指令和数据。可执行文件可以直接在操作系统中运行。</p></li><li><p>源代码文件：源代码文件以可读的文本形式保存程序的源代码。源代码文件通常以特定的文件扩展名（如.py、.java、.c）保存，以便在需要时进行编辑和编译。</p></li></ul><p>&emsp;&emsp;程序员写的程序一般存在于开发环境或文本编辑器中。开发环境（如IDE）提供了编写、调试和管理程序的功能。程序员可以在开发环境中创建和编辑源代码文件，并进行编译、调试和运行等操作。程序员也可以使用文本编辑器（如记事本、Sublime Text、VS Code等）来编写源代码文件，并使用命令行工具或集成开发环境来进行编译和执行。</p><p>&emsp;&emsp;在开发过程中，程序员通常会使用版本控制系统（如Git）来管理和追踪程序的变化。通过版本控制系统，程序员可以保存和管理不同版本的程序，以便在需要时进行回滚、合并和协作等操作。版本控制系统也提供了远程存储库的功能，可以将程序存储在云端，方便团队协作和备份。</p><h2 id="程序的运行"><a href="#程序的运行" class="headerlink" title="程序的运行"></a>程序的运行</h2><p><strong>程序和进程</strong></p><p>&emsp;&emsp;程序是一个静态的概念，通常我们编译源代码生成的可执行程序是存储于硬盘中的，当我们执行这个程序时，它会被操作系统给load到内存里面，此时运行中的程序就称为进程。</p><p>当要运行一个可执行程序时，计算机会经历以下步骤：</p><ol><li><p>加载程序：操作系统会从存储介质（如硬盘）中读取可执行文件，并将其加载到内存中。加载过程包括将程序的指令和数据复制到内存中的适当位置，并进行必要的初始化和资源分配。</p></li><li><p>解析指令：CPU会逐条解析内存中的指令，并执行相应的操作。指令包括了程序的逻辑和功能，如算术运算、条件判断、循环等。</p></li><li><p>执行程序：CPU按照指令的顺序执行程序的逻辑。这包括了对数据的处理、操作系统的调用、与其他程序的交互等。程序的执行过程可能涉及到多个线程或进程的并发执行，以提高计算机的效率和响应性。</p></li><li><p>输出结果：程序的执行结果可以通过多种方式输出，如在屏幕上显示、写入文件、发送网络数据等。程序可以使用操作系统提供的API或库来进行输出操作。</p></li><li><p>释放资源：当程序执行完毕或被终止时，操作系统会释放程序所占用的内存和其他资源，以便其他程序可以使用。</p></li></ol><p>&emsp;&emsp;运行可执行程序的过程通常由操作系统负责管理。操作系统提供了运行程序的环境和接口，以便程序可以与计算机的硬件和其他软件进行交互。操作系统还负责调度和管理程序的执行，以确保计算机的资源被合理分配和利用。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> Linux </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 内存 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>man手册</title>
       <link href="/2023/09/29/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/man%E6%89%8B%E5%86%8C/"/>
       <url>/2023/09/29/%E5%BC%80%E5%8F%91%E5%B7%A5%E5%85%B7/man%E6%89%8B%E5%86%8C/</url>
